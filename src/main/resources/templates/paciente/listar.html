@@ -1,10 +1,71 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
 <head>
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Listar Pacientes</title>
 </head>
 <body>
+<div layout:fragment="conteudo">
+    <h1>Pacientes</h1>
+    <div class="alert alert-success"
+         th:if="!${#strings.isEmpty(mensagem)}" th:text="${mensagem}"></div>
 
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Peso (kg)</th>
+            <th>Altura (cm)</th>
+            <th>Grupo Sanguíneo</th>
+            <th>Sexo Biológico</th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="paciente : ${pacientes}">
+            <td th:text="${paciente.nome}"></td>
+            <td th:text="${paciente.peso}"></td>
+            <td th:text="${paciente.altura}"></td>
+            <td th:text="${paciente.grupoSanguineo}"></td>
+            <td th:text="${paciente.sexoBiologico}"></td>
+            <td>
+                <a th:href="@{/paciente/detalhes/{id}(id=${paciente.id})}" class="btn btn-outline-success m-2">Ver Detalhes</a>
+                <a th:href="@{/paciente/editar/{id}(id=${paciente.id})}" class="btn btn-outline-primary m-2">Editar</a>
+                <button th:onclick="|pacienteId.value = ${paciente.id}|" type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                    Remover
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/paciente/cadastrar}" class="btn btn-primary">Cadastrar Novo Paciente</a>
+
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Confirmação de Remoção</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Deseja realmente remover o paciente?
+                </div>
+                <div class="modal-footer">
+                    <form th:action="@{/paciente/remover}" method="post">
+                        <input type="hidden" name="id" id="pacienteId"/>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
+                        <button type="submit" class="btn btn-danger">Sim</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 </body>
 </html>

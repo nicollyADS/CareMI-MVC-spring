@@ -1,10 +1,69 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
 <head>
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Listar Usuários</title>
 </head>
 <body>
+<div layout:fragment="conteudo">
+    <h1>Usuários</h1>
+    <div class="alert alert-success"
+         th:if="!${#strings.isEmpty(mensagem)}" th:text="${mensagem}">
+    </div>
+    <table class="table">
+        <tr>
+            <th>Nome</th>
+            <th>Data de Nascimento</th>
+            <th>CPF</th>
+            <th>RG</th>
+            <th>Nacionalidade</th>
+            <th>Estado Civil</th>
+            <th>Profissão</th>
+            <th>Data de Cadastro</th>
+            <th>Ativo</th>
+            <th>Ações</th>
+        </tr>
+        <tr th:each="usuario : ${usuarios}">
+            <td th:text="${usuario.nome}"></td>
+            <td th:text="${#temporals.format(usuario.dataNascimento, 'dd/MM/yyyy')}"></td>
+            <td th:text="${usuario.cpf}"></td>
+            <td th:text="${usuario.rg}"></td>
+            <td th:text="${usuario.nacionalidade}"></td>
+            <td th:text="${usuario.estadoCivil}"></td>
+            <td th:text="${usuario.profissao}"></td>
+            <td th:text="${#temporals.format(usuario.dataCadastro, 'dd/MM/yyyy')}"></td>
+            <td th:text="${usuario.ativo == 1 ? 'Sim' : 'Não'}"></td>
+            <td>
+                <a th:href="@{/usuario/detalhes/}+${usuario.id}" class="btn btn-outline-success m-2">Ver Detalhes</a>
+                <a th:href="@{/usuario/editar/}+${usuario.id}" class="btn btn-outline-primary m-2">Editar</a>
+                <button th:onclick="|usuarioId.value = ${usuario.id}|" type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">Remover</button>
+            </td>
+        </tr>
+    </table>
+    <a th:href="@{/usuario/cadastrar}" class="btn btn-primary">Cadastrar Novo Usuário</a>
 
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Confirmação</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Deseja realmente excluir o usuário?
+                </div>
+                <div class="modal-footer">
+                    <form th:action="@{/usuario/remover}" method="post">
+                        <input type="hidden" name="id" id="usuarioId"/>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
+                        <button type="submit" class="btn btn-danger">Sim</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

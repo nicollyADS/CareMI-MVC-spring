@@ -1,10 +1,70 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
 <head>
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Listar Médicos</title>
 </head>
 <body>
+<div layout:fragment="conteudo">
+    <h1>Médicos</h1>
+    <div class="alert alert-success"
+         th:if="!${#strings.isEmpty(mensagem)}" th:text="${mensagem}">
+    </div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Especialização</th>
+            <th>CRM</th>
+            <th>Email</th>
+            <th>Celular</th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="medico : ${medicos}">
+            <td th:text="${medico.nome}"></td>
+            <td th:text="${medico.especializacao}"></td>
+            <td th:text="${medico.crm}"></td>
+            <td th:text="${medico.email}"></td>
+            <td th:text="${medico.celular}"></td>
+            <td>
+                <a th:href="@{/medico/detalhes/}+${medico.id}" class="btn btn-outline-success m-2">Ver Detalhes</a>
+                <a th:href="@{/medico/editar/}+${medico.id}" class="btn btn-outline-primary m-2">Editar</a>
+                <button th:onclick="|medicoId.value = ${medico.id}|" type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Remover
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/medico/cadastrar}" class="btn btn-primary">Cadastrar</a>
 
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Confirmação</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Deseja realmente excluir o médico?
+                </div>
+                <div class="modal-footer">
+                    <form th:action="@{/medico/remover}" method="post">
+                        <input type="hidden" name="id" id="medicoId"/>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
+                        <button type="submit" class="btn btn-danger">Sim</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 </body>
 </html>

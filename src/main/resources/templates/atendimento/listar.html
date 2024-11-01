@@ -1,10 +1,72 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
 <head>
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Listar Atendimentos</title>
 </head>
 <body>
+<div layout:fragment="conteudo">
+    <h1>Atendimentos</h1>
+    <div class="alert alert-success"
+         th:if="!${#strings.isEmpty(mensagem)}" th:text="${mensagem}">
+    </div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Descrição</th>
+            <th>Dias</th>
+            <th>Hábito</th>
+            <th>Tempo de Sono</th>
+            <th>Hereditário</th>
+            <th>Data de Envio</th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="atendimento : ${atendimentos}">
+            <td th:text="${atendimento.descricao}"></td>
+            <td th:text="${atendimento.dias}"></td>
+            <td th:text="${atendimento.habito}"></td>
+            <td th:text="${atendimento.tempoSono}"></td>
+            <td th:text="${atendimento.hereditario}"></td>
+            <td th:text="${#temporals.format(atendimento.dataEnvio, 'dd/MM/yyyy')}"></td>
+            <td>
+                <a th:href="@{/atendimento/detalhes/}+${atendimento.id}" class="btn btn-outline-success m-2">Ver Detalhes</a>
+                <a th:href="@{/atendimento/editar/}+${atendimento.id}" class="btn btn-outline-primary m-2">Editar</a>
+                <button th:onclick="|atendimentoId.value = ${atendimento.id}|" type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Remover
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/atendimento/cadastrar}" class="btn btn-primary">Cadastrar</a>
 
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Confirmação</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Deseja realmente excluir o atendimento?
+                </div>
+                <div class="modal-footer">
+                    <form th:action="@{/atendimento/remover}" method="post">
+                        <input type="hidden" name="id" id="atendimentoId"/>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
+                        <button type="submit" class="btn btn-danger">Sim</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 </body>
 </html>
