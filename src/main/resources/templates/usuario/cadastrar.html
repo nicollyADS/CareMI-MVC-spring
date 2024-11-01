@@ -1,10 +1,72 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Usuário</title>
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
 </head>
 <body>
 
+<div layout:fragment="conteudo">
+
+    <h1>Cadastro de Usuário</h1>
+
+    <form th:action="@{/usuario/cadastrar}" th:object="${usuario}" method="post">
+        <div class="mb-3">
+            <label for="nome" class="form-label">Nome</label>
+            <input type="text" class="form-control" id="nome" th:field="*{nome}" placeholder="Informe o nome" required>
+        </div>
+        <div class="mb-3">
+            <label for="dataNascimento" class="form-label">Data de Nascimento</label>
+            <input type="date" class="form-control" id="dataNascimento" th:field="*{dataNascimento}" required>
+        </div>
+        <div class="mb-3">
+            <label for="cpf" class="form-label">CPF</label>
+            <input type="text" class="form-control" id="cpf" th:field="*{cpf}" placeholder="Informe o CPF" required>
+        </div>
+        <div class="mb-3">
+            <label for="rg" class="form-label">RG</label>
+            <input type="text" class="form-control" id="rg" th:field="*{rg}" placeholder="Informe o RG" required>
+        </div>
+        <div class="mb-3">
+            <label for="nacionalidade" class="form-label">Nacionalidade</label>
+            <input type="text" class="form-control" id="nacionalidade" th:field="*{nacionalidade}" placeholder="Informe a nacionalidade" required>
+        </div>
+        <div class="mb-3">
+            <label for="dataCadastro" class="form-label">Data de Cadastro</label>
+            <input type="date" class="form-control" id="dataCadastro" th:field="*{dataCadastro}" required>
+        </div>
+        <div class="mb-3">
+            <label for="estadoCivil" class="form-label">Estado Civil</label>
+            <select class="form-select" id="estadoCivil" th:field="*{estadoCivil}" required>
+                <option value="" disabled selected>Selecione o estado civil</option>
+                <option value="SOLTEIRO">Solteiro</option>
+                <option value="CASADO">Casado</option>
+                <option value="DIVORCIADO">Divorciado</option>
+                <option value="VIUVO">Viúvo</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="profissao" class="form-label">Profissão</label>
+            <input type="text" class="form-control" id="profissao" th:field="*{profissao}" placeholder="Informe a profissão" required>
+        </div>
+        <div class="mb-3">
+            <label for="senha" class="form-label">Senha</label>
+            <input type="password" class="form-control" id="senha" th:field="*{senha}" placeholder="Informe a senha" required>
+        </div>
+        <div class="mb-3">
+            <label for="ativo" class="form-label">Ativo</label>
+            <select class="form-select" id="ativo" th:field="*{ativo}" required>
+                <option value="1">Ativo</option>
+                <option value="0">Inativo</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Cadastrar</button>
+    </form>
+</div>
+
+<script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
 </body>
 </html>

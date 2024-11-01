@@ -1,10 +1,75 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Resultado de Exame</title>
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
 </head>
 <body>
 
+<div layout:fragment="conteudo">
+
+    <h1>Cadastro de Resultado de Exame</h1>
+
+    <form th:action="@{/resultado-exame/cadastrar}" th:object="${resultadoExame}" method="post">
+        <div class="mb-3">
+            <label for="descricaoExame" class="form-label">Descrição do Exame</label>
+            <input type="text" class="form-control" id="descricaoExame" th:field="*{descricaoExame}" placeholder="Informe a descrição do exame" required>
+        </div>
+        <div class="mb-3">
+            <label for="observacao" class="form-label">Observações</label>
+            <input type="text" class="form-control" id="observacao" th:field="*{observacao}" placeholder="Informe observações" required>
+        </div>
+        <div class="mb-3">
+            <label for="resultado" class="form-label">Resultado</label>
+            <input type="number" class="form-control" id="resultado" th:field="*{resultado}" placeholder="Informe o resultado" required>
+        </div>
+        <div class="mb-3">
+            <label for="globulosVermelhos" class="form-label">Glóbulos Vermelhos</label>
+            <input type="number" class="form-control" id="globulosVermelhos" th:field="*{globulosVermelhos}" placeholder="Informe o número de glóbulos vermelhos" required>
+        </div>
+        <div class="mb-3">
+            <label for="globulosBrancos" class="form-label">Glóbulos Brancos</label>
+            <input type="number" class="form-control" id="globulosBrancos" th:field="*{globulosBrancos}" placeholder="Informe o número de glóbulos brancos" required>
+        </div>
+        <div class="mb-3">
+            <label for="plaquetas" class="form-label">Plaquetas</label>
+            <input type="number" class="form-control" id="plaquetas" th:field="*{plaquetas}" placeholder="Informe o número de plaquetas" required>
+        </div>
+        <div class="mb-3">
+            <label for="homoglobinaGlicada" class="form-label">Hemoglobina Glicada</label>
+            <input type="number" class="form-control" id="homoglobinaGlicada" th:field="*{homoglobinaGlicada}" placeholder="Informe o nível de hemoglobina glicada" required>
+        </div>
+        <div class="mb-3">
+            <label for="creatina" class="form-label">Creatina</label>
+            <input type="number" class="form-control" id="creatina" th:field="*{creatina}" placeholder="Informe o nível de creatina" required>
+        </div>
+        <div class="mb-3">
+            <label for="colesterolTotal" class="form-label">Colesterol Total</label>
+            <input type="number" class="form-control" id="colesterolTotal" th:field="*{colesterolTotal}" placeholder="Informe o nível de colesterol total" required>
+        </div>
+        <div class="mb-3">
+            <label for="colesterolHDL" class="form-label">Colesterol HDL</label>
+            <input type="number" class="form-control" id="colesterolHDL" th:field="*{colesterolHDL}" placeholder="Informe o nível de colesterol HDL" required>
+        </div>
+        <div class="mb-3">
+            <label for="colesterolLDL" class="form-label">Colesterol LDL</label>
+            <input type="number" class="form-control" id="colesterolLDL" th:field="*{colesterolLDL}" placeholder="Informe o nível de colesterol LDL" required>
+        </div>
+        <div class="mb-3">
+            <label for="teglicerides" class="form-label">Triglicerídeos</label>
+            <input type="number" class="form-control" id="teglicerides" th:field="*{teglicerides}" placeholder="Informe o nível de triglicerídeos" required>
+        </div>
+        <div class="mb-3">
+            <label for="hormonioTrioestimulanteTSH" class="form-label">Hormônio Triostimulante (TSH)</label>
+            <input type="number" class="form-control" id="hormonioTrioestimulanteTSH" th:field="*{hormonioTrioestimulanteTSH}" placeholder="Informe o nível de TSH" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Cadastrar</button>
+    </form>
+</div>
+
+<script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
 </body>
 </html>

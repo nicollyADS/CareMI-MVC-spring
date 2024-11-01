@@ -1,10 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Atendimento</title>
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
 </head>
 <body>
 
+<div layout:fragment="conteudo">
+
+    <h1>Cadastro de Atendimento</h1>
+
+    <form th:action="@{/atendimento/cadastrar}" th:object="${atendimento}" method="post">
+        <div class="mb-3">
+            <label for="descricao" class="form-label">Descrição</label>
+            <textarea class="form-control" id="descricao" th:field="*{descricao}" rows="3" placeholder="Informe a descrição do atendimento"></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="dias" class="form-label">Quantidade de Dias</label>
+            <input type="number" class="form-control" id="dias" th:field="*{dias}" placeholder="Informe a quantidade de dias">
+        </div>
+        <div class="mb-3">
+            <label for="habito" class="form-label">Hábito</label>
+            <input type="text" class="form-control" id="habito" th:field="*{habito}" placeholder="Informe o hábito">
+        </div>
+        <div class="mb-3">
+            <label for="tempoSono" class="form-label">Tempo de Sono</label>
+            <input type="text" class="form-control" id="tempoSono" th:field="*{tempoSono}" placeholder="Informe o tempo de sono">
+        </div>
+        <div class="mb-3">
+            <label for="hereditario" class="form-label">Histórico Hereditário</label>
+            <input type="text" class="form-control" id="hereditario" th:field="*{hereditario}" placeholder="Informe o histórico hereditário">
+        </div>
+        <div class="mb-3">
+            <label for="dataEnvio" class="form-label">Data de Envio</label>
+            <input type="date" class="form-control" id="dataEnvio" th:field="*{dataEnvio}" placeholder="Informe a data de envio">
+        </div>
+        <button type="submit" class="btn btn-primary">Cadastrar</button>
+    </form>
+</div>
+
+<script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
 </body>
 </html>

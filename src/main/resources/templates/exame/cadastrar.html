@@ -1,10 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Exame</title>
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
 </head>
 <body>
 
+<div layout:fragment="conteudo">
+
+    <h1>Cadastro de Exame</h1>
+
+    <form th:action="@{/exame/cadastrar}" th:object="${exame}" method="post">
+        <div class="mb-3">
+            <label for="descricao" class="form-label">Descrição do Exame</label>
+            <textarea class="form-control" id="descricao" th:field="*{descricao}" rows="3" placeholder="Informe a descrição do exame"></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="data" class="form-label">Data do Exame</label>
+            <input type="date" class="form-control" id="data" th:field="*{data}" placeholder="Informe a data do exame">
+        </div>
+        <button type="submit" class="btn btn-primary">Cadastrar</button>
+    </form>
+</div>
+
+<script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
 </body>
 </html>

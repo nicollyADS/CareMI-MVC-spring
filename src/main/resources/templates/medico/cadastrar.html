@@ -1,10 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Médico</title>
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
 </head>
 <body>
 
+<div layout:fragment="conteudo">
+
+    <h1>Cadastro de Médico</h1>
+
+    <form th:action="@{/medico/cadastrar}" th:object="${medico}" method="post">
+        <div class="mb-3">
+            <label for="nome" class="form-label">Nome do Médico</label>
+            <input type="text" class="form-control" id="nome" th:field="*{nome}" placeholder="Informe o nome do médico" required>
+        </div>
+        <div class="mb-3">
+            <label for="especializacao" class="form-label">Especialização</label>
+            <input type="text" class="form-control" id="especializacao" th:field="*{especializacao}" placeholder="Informe a especialização" required>
+        </div>
+        <div class="mb-3">
+            <label for="crm" class="form-label">CRM</label>
+            <input type="text" class="form-control" id="crm" th:field="*{crm}" placeholder="Informe o CRM" required>
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">E-mail</label>
+            <input type="email" class="form-control" id="email" th:field="*{email}" placeholder="Informe o e-mail" required>
+        </div>
+        <div class="mb-3">
+            <label for="celular" class="form-label">Celular</label>
+            <input type="text" class="form-control" id="celular" th:field="*{celular}" placeholder="Informe o celular" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Cadastrar</button>
+    </form>
+</div>
+
+<script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
 </body>
 </html>
