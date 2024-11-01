@@ -79,7 +79,6 @@ public class UsuarioController {
         return "redirect:/usuario/listar";
     }
 
-
     @PostMapping("remover")
     @Transactional
     public String remover(Long id, RedirectAttributes redirectAttributes) {

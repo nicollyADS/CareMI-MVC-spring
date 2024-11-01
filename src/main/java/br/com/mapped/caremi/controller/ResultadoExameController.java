@@ -44,7 +44,7 @@ public class ResultadoExameController {
 
     @GetMapping("listar")
     public String listar(Model model) {
-        model.addAttribute("resultados-exames", resultadoExameRepository.findAll());
+        model.addAttribute("resultadosExames", resultadoExameRepository.findAll());
         return "resultado-exame/listar";
     }
 
@@ -53,7 +53,7 @@ public class ResultadoExameController {
     public String detalhesResultadosExames(@PathVariable Long id, Model model) {
         Optional<ResultadoExame> optionalResultadoExame = resultadoExameRepository.findById(id);
         if (optionalResultadoExame.isPresent()) {
-            model.addAttribute("resultado-exame", optionalResultadoExame.get());
+            model.addAttribute("resultadoExame", optionalResultadoExame.get());
         } else {
             model.addAttribute("erro", "resultado do exame não encontrado");
             return "error";
@@ -65,14 +65,21 @@ public class ResultadoExameController {
 
     @GetMapping("editar/{id}")
     public String editar(@PathVariable("id") Long id, Model model) {
-        model.addAttribute("resultado-exame", resultadoExameRepository.findById(id));
+        Optional<ResultadoExame> optionalResultadoExame = resultadoExameRepository.findById(id);
+        if (optionalResultadoExame.isPresent()) {
+            model.addAttribute("resultadoExame", optionalResultadoExame.get());
+        } else {
+            model.addAttribute("erro", "resultado do exame não encontrado");
+            return "error";
+        }
         return "resultado-exame/editar";
     }
 
-
     @PostMapping("editar")
-    public String editar(@Valid ResultadoExame resultadoExame, BindingResult result, RedirectAttributes redirectAttributes, Model model){
+    @Transactional
+    public String editar(@Valid ResultadoExame resultadoExame, BindingResult result, RedirectAttributes redirectAttributes, Model model) {
         if (result.hasErrors()) {
+            model.addAttribute("resultadoExame", resultadoExame);
             return "resultado-exame/editar";
         }
         resultadoExameRepository.save(resultadoExame);

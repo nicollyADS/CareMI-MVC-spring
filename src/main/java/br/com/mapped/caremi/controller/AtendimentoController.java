@@ -60,14 +60,6 @@ public class AtendimentoController {
         return "atendimento/detalhes";
     }
 
-    @GetMapping("pesquisar")
-    public String pesquisarAtendimentos(@RequestParam LocalDate query, Model model) {
-        List<Atendimento> atendimentos = atendimentoRepository.findByDataEnvio(query);
-        model.addAttribute("atendimentos", atendimentos);
-        return "atendimento/pesquisar";
-    }
-
-
     @GetMapping("editar/{id}")
     public String editar(@PathVariable("id") Long id, Model model) {
         model.addAttribute("atendimento", atendimentoRepository.findById(id));
