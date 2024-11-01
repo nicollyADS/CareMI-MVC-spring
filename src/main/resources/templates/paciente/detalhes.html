@@ -1,10 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title th:text="'Detalhes do Paciente: ' + ${paciente.nome}">Detalhes do Paciente</title>
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
 </head>
 <body>
+<div layout:fragment="conteudo" class="container mt-4">
+    <h1 th:text="'Paciente: ' + ${paciente.nome}">Nome do Paciente</h1>
+    <p><strong>Nome:</strong> <span th:text="${paciente.nome}"></span></p>
+    <p><strong>Peso:</strong> <span th:text="${paciente.peso}"></span> kg</p>
+    <p><strong>Altura:</strong> <span th:text="${paciente.altura}"></span> cm</p>
+    <p><strong>Grupo Sanguíneo:</strong> <span th:text="${paciente.grupoSanguineo}"></span></p>
+    <p><strong>Sexo Biológico:</strong> <span th:text="${paciente.sexoBiologico}"></span></p>
+    <a th:href="@{/paciente/listar}" class="btn btn-secondary">Voltar para a lista de pacientes</a>
+</div>
 
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
 </body>
 </html>

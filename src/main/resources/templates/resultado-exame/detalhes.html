@@ -1,10 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title th:text="'Detalhes do Resultado do Exame: ' + ${resultadoExame.id}">Detalhes do Resultado do Exame</title>
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
 </head>
 <body>
+<div layout:fragment="conteudo" class="container mt-4">
+    <h1 th:text="'Resultado do Exame ID: ' + ${resultadoExame.id}">Resultado do Exame</h1>
 
+    <p><strong>ID do Resultado:</strong> <span th:text="${resultadoExame.id}"></span></p>
+    <p><strong>Descrição do Exame:</strong> <span th:text="${resultadoExame.descricaoExame}"></span></p>
+    <p><strong>Observações:</strong> <span th:text="${resultadoExame.observacao}"></span></p>
+    <p><strong>Resultado:</strong> <span th:text="${resultadoExame.resultado}"></span></p>
+
+    <h3>Valores dos Exames</h3>
+    <ul>
+        <li><strong>Glóbulos Vermelhos:</strong> <span th:text="${resultadoExame.globulosVermelhos}"></span></li>
+        <li><strong>Glóbulos Brancos:</strong> <span th:text="${resultadoExame.globulosBrancos}"></span></li>
+        <li><strong>Plaquetas:</strong> <span th:text="${resultadoExame.plaquetas}"></span></li>
+        <li><strong>Hemoglobina Glicada:</strong> <span th:text="${resultadoExame.homoglobinaGlicada}"></span></li>
+        <li><strong>Creatina:</strong> <span th:text="${resultadoExame.creatina}"></span></li>
+        <li><strong>Colesterol Total:</strong> <span th:text="${resultadoExame.colesterolTotal}"></span></li>
+        <li><strong>Colesterol HDL:</strong> <span th:text="${resultadoExame.colesterolHDL}"></span></li>
+        <li><strong>Colesterol LDL:</strong> <span th:text="${resultadoExame.colesterolLDL}"></span></li>
+        <li><strong>Tiglicerídeos:</strong> <span th:text="${resultadoExame.teglicerides}"></span></li>
+        <li><strong>Hormônio TSH:</strong> <span th:text="${resultadoExame.hormonioTrioestimulanteTSH}"></span></li>
+    </ul>
+
+    <a th:href="@{/resultado-exame/listar}" class="btn btn-secondary">Voltar para a lista de resultados</a>
+</div>
+
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
 </body>
 </html>

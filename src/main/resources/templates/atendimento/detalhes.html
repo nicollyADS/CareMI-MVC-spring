@@ -1,10 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title th:text="'Detalhes de Atendimento: ' + ${atendimento.descricao}">Detalhes de Atendimento</title>
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
 </head>
 <body>
+<div layout:fragment="conteudo" class="container mt-4">
+    <h1 th:text="'Atendimento: ' + ${atendimento.descricao}">Descrição do Atendimento</h1>
+    <p><strong>Descrição:</strong> <span th:text="${atendimento.descricao}"></span></p>
+    <p><strong>Dias:</strong> <span th:text="${atendimento.dias}"></span></p>
+    <p><strong>Hábito:</strong> <span th:text="${atendimento.habito}"></span></p>
+    <p><strong>Tempo de Sono:</strong> <span th:text="${atendimento.tempoSono}"></span></p>
+    <p><strong>Hereditário:</strong> <span th:text="${atendimento.hereditario}"></span></p>
+    <p><strong>Data de Envio:</strong> <span th:text="${#temporals.format(atendimento.dataEnvio, 'dd/MM/yyyy')}"></span></p>
+    <a th:href="@{/atendimento/listar}" class="btn btn-secondary">Voltar para a lista de atendimentos</a>
+</div>
 
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
 </body>
 </html>

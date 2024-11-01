@@ -1,10 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title th:text="'Detalhes do Exame: ' + ${exame.descricao}">Detalhes do Exame</title>
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
 </head>
 <body>
+<div layout:fragment="conteudo" class="container mt-4">
+    <h1 th:text="'Exame: ' + ${exame.descricao}">Descrição do Exame</h1>
+    <p><strong>Descrição:</strong> <span th:text="${exame.descricao}"></span></p>
+    <p><strong>Data do Exame:</strong> <span th:text="${#temporals.format(exame.data, 'dd/MM/yyyy')}"></span></p>
+    <a th:href="@{/exame/listar}" class="btn btn-secondary">Voltar para a lista de exames</a>
+</div>
 
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
 </body>
 </html>
