@@ -1,10 +1,64 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
 <head>
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Editar Paciente</title>
 </head>
 <body>
+<div layout:fragment="conteudo">
+    <h1>Editar Paciente</h1>
+    <form th:action="@{/paciente/editar}" th:object="${paciente}" method="post">
+        <div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
+            <p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>
+        </div>
+        <input th:field="*{id}" type="hidden"/>
 
+        <div class="mb-3">
+            <label class="form-label">Nome</label>
+            <input class="form-control" th:field="*{nome}" type="text" id="nome" placeholder="Informe o nome do paciente" required>
+            <p th:if="${#fields.hasErrors('nome')}" class="text text-danger" th:errors="*{nome}"></p>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Peso (kg)</label>
+            <input class="form-control" th:field="*{peso}" type="number" id="peso" placeholder="Informe o peso do paciente" required>
+            <p th:if="${#fields.hasErrors('peso')}" class="text text-danger" th:errors="*{peso}"></p>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Altura (cm)</label>
+            <input class="form-control" th:field="*{altura}" type="number" id="altura" placeholder="Informe a altura do paciente" required>
+            <p th:if="${#fields.hasErrors('altura')}" class="text text-danger" th:errors="*{altura}"></p>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Grupo Sanguíneo</label>
+            <input class="form-control" th:field="*{grupoSanguineo}" type="text" id="grupoSanguineo" placeholder="Informe o grupo sanguíneo" required>
+            <p th:if="${#fields.hasErrors('grupoSanguineo')}" class="text text-danger" th:errors="*{grupoSanguineo}"></p>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Sexo Biológico</label>
+            <select class="form-control" th:field="*{sexoBiologico}" required>
+                <option value="">Selecione...</option>
+                <option th:value="${T(br.com.mapped.caremi.model.SexoBiologico).MASCULINO}" th:text="#{sexo.biologico.masculino}"></option>
+                <option th:value="${T(br.com.mapped.caremi.model.SexoBiologico).FEMININO}" th:text="#{sexo.biologico.feminino}"></option>
+                <option th:value="${T(br.com.mapped.caremi.model.SexoBiologico).INTERSEXUAL}" th:text="#{sexo.biologico.intersexual}"></option>
+            </select>
+            <p th:if="${#fields.hasErrors('sexoBiologico')}" class="text text-danger" th:errors="*{sexoBiologico}"></p>
+        </div>
+
+        <button class="btn btn-success">Salvar</button>
+        <a href="@{/paciente/listar}" class="btn btn-secondary">Cancelar</a>
+
+        <br>
+        <p th:text="${mensagem}"></p>
+    </form>
+</div>
+
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 </body>
 </html>

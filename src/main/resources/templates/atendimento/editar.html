@@ -1,10 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
 <head>
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Editar Atendimento</title>
 </head>
 <body>
+<div layout:fragment="conteudo">
+    <h1>Editar Atendimento</h1>
+    <form th:action="@{/atendimento/editar}" th:object="${atendimento}" method="post">
+        <div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
+            <p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>
+        </div>
+        <input th:field="*{id}" type="hidden"/>
 
+        <div class="mb-3">
+            <label class="form-label">Descrição</label>
+            <input class="form-control" th:field="*{descricao}" type="text" id="descricao" placeholder="Informe a descrição">
+            <p th:if="${#fields.hasErrors('descricao')}" class="text text-danger" th:errors="*{descricao}"></p>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Quantidade de Dias</label>
+            <input class="form-control" th:field="*{dias}" type="number" id="dias" placeholder="Informe a quantidade de dias">
+            <p th:if="${#fields.hasErrors('dias')}" class="text text-danger" th:errors="*{dias}"></p>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Hábito</label>
+            <input class="form-control" th:field="*{habito}" type="text" id="habito" placeholder="Informe o hábito">
+            <p th:if="${#fields.hasErrors('habito')}" class="text text-danger" th:errors="*{habito}"></p>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Tempo de Sono</label>
+            <input class="form-control" th:field="*{tempoSono}" type="text" id="tempoSono" placeholder="Informe o tempo de sono">
+            <p th:if="${#fields.hasErrors('tempoSono')}" class="text text-danger" th:errors="*{tempoSono}"></p>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Hereditário</label>
+            <input class="form-control" th:field="*{hereditario}" type="text" id="hereditario" placeholder="Informe questões hereditárias">
+            <p th:if="${#fields.hasErrors('hereditario')}" class="text text-danger" th:errors="*{hereditario}"></p>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Data de Envio</label>
+            <input class="form-control" th:field="*{dataEnvio}" type="date" id="dataEnvio">
+            <p th:if="${#fields.hasErrors('dataEnvio')}" class="text text-danger" th:errors="*{dataEnvio}"></p>
+        </div>
+
+        <button class="btn btn-success">Salvar</button>
+        <a href="@{/atendimento/listar}" class="btn btn-secondary">Cancelar</a>
+
+        <br>
+        <p th:text="${mensagem}"></p>
+    </form>
+</div>
+
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 </body>
 </html>
