@@ -16,7 +16,7 @@
         <input th:field="*{id}" type="hidden"/>
 
         <div class="mb-3">
-            <label class="form-label">Descrição Exame</label>
+            <label class="form-label">Exame</label>
             <select th:field="*{exame.id}" class="form-select">
                 <option value="">Selecione</option>
                 <option th:each="exame : ${exames}"
