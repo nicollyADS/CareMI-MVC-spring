@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+    <meta charset="UTF-8">
+    <title>Editar Usuário</title>
+</head>
+<body>
+<div layout:fragment="conteudo">
+    <h1>Editar Usuário</h1>
+    <form th:action="@{/usuario/editar}" th:object="${usuario}" method="post">
+        <div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
+            <p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>
+        </div>
+        <input th:field="*{id}" type="hidden"/>
+
+        <div class="mb-3">
+            <label class="form-label">Nome</label>
+            <input class="form-control" th:field="*{nome}" type="text" id="nome" placeholder="Informe o nome">
+            <p th:if="${#fields.hasErrors('nome')}" class="text text-danger" th:errors="*{nome}"></p>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Data de Nascimento</label>
+            <input class="form-control" th:field="*{dataNascimento}" type="date" id="dataNascimento">
+            <p th:if="${#fields.hasErrors('dataNascimento')}" class="text text-danger" th:errors="*{dataNascimento}"></p>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">CPF</label>
+            <input class="form-control" th:field="*{cpf}" type="text" id="cpf" placeholder="Informe o CPF">
+            <p th:if="${#fields.hasErrors('cpf')}" class="text text-danger" th:errors="*{cpf}"></p>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">RG</label>
+            <input class="form-control" th:field="*{rg}" type="text" id="rg" placeholder="Informe o RG">
+            <p th:if="${#fields.hasErrors('rg')}" class="text text-danger" th:errors="*{rg}"></p>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Nacionalidade</label>
+            <input class="form-control" th:field="*{nacionalidade}" type="text" id="nacionalidade" placeholder="Informe a nacionalidade">
+            <p th:if="${#fields.hasErrors('nacionalidade')}" class="text text-danger" th:errors="*{nacionalidade}"></p>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Data de Cadastro</label>
+            <input class="form-control" th:field="*{dataCadastro}" type="date" id="dataCadastro" placeholder="Informe a data de cadastro">
+            <p th:if="${#fields.hasErrors('dataCadastro')}" class="text text-danger" th:errors="*{dataCadastro}"></p>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Estado Civil</label>
+            <input class="form-control" th:field="*{estadoCivil}" type="text" id="estadoCivil" placeholder="Informe o estado civil">
+            <p th:if="${#fields.hasErrors('estadoCivil')}" class="text text-danger" th:errors="*{estadoCivil}"></p>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Profissão</label>
+            <input class="form-control" th:field="*{profissao}" type="text" id="profissao" placeholder="Informe a profissão">
+            <p th:if="${#fields.hasErrors('profissao')}" class="text text-danger" th:errors="*{profissao}"></p>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Senha</label>
+            <input class="form-control" th:field="*{senha}" type="password" id="senha" placeholder="Informe a senha">
+            <p th:if="${#fields.hasErrors('senha')}" class="text text-danger" th:errors="*{senha}"></p>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Ativo</label>
+            <input class="form-control" th:field="*{ativo}" type="text" id="fgAtivo" placeholder="Informe '1' para Ativo ou '0' para Inativo" />
+            <p th:if="${#fields.hasErrors('ativo')}" class="text text-danger" th:errors="*{ativo}"></p>
+        </div>
+
+        <button class="btn btn-success">Salvar</button>
+        <a href="@{/usuario/listar}" class="btn btn-secondary">Cancelar</a>
+
+        <br>
+        <p th:text="${mensagem}"></p>
+    </form>
+</div>
+
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>
