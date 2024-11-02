@@ -20,6 +20,9 @@
 7. Após ter configurado o ambiente, inicialize o projeto
 8. Para fazer as requisições, utilize a URL `http://localhost:8080`
 
+### Login de Acesso
+- **Usuário:** admin
+- **Senha:** admin
 
 ### Vídeo de Apresentação
 
