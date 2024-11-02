@@ -13,6 +13,11 @@
 
     <h1>Cadastro de Resultado de Exame</h1>
 
+    <div th:if="${mensagem}" class="alert alert-success" role="alert">
+        <p th:text="${mensagem}">Resultado cadastrado com sucesso!</p>
+    </div>
+
+
     <form th:action="@{/resultado-exame/cadastrar}" th:object="${resultadoExame}" method="post">
         <div class="mb-3">
             <label for="descricaoExame" class="form-label">Descrição do Exame</label>

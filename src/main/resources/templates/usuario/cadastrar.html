@@ -13,6 +13,11 @@
 
     <h1>Cadastro de Usuário</h1>
 
+    <div th:if="${mensagem}" class="alert alert-success" role="alert">
+        <p th:text="${mensagem}">Usuário cadastrado com sucesso!</p>
+    </div>
+
+
     <form th:action="@{/usuario/cadastrar}" th:object="${usuario}" method="post">
         <div class="mb-3">
             <label for="nome" class="form-label">Nome</label>
