@@ -17,18 +17,17 @@
 
         <div class="mb-3">
             <label class="form-label">Data do Exame</label>
-            <input class="form-control" th:field="*{data}" type="date" id="data" placeholder="Informe a data do exame">
+            <input class="form-control" th:field="*{data}" type="date" id="data" placeholder="Informe a data do exame" required>
             <p th:if="${#fields.hasErrors('data')}" class="text text-danger" th:errors="*{data}"></p>
         </div>
 
         <div class="mb-3">
             <label class="form-label">Descrição</label>
-            <textarea class="form-control" th:field="*{descricao}" id="descricao" placeholder="Informe a descrição do exame"></textarea>
+            <textarea class="form-control" th:field="*{descricao}" id="descricao" placeholder="Informe a descrição do exame" required></textarea>
             <p th:if="${#fields.hasErrors('descricao')}" class="text text-danger" th:errors="*{descricao}"></p>
         </div>
 
         <button class="btn btn-success">Salvar</button>
-        <a href="@{/exame/listar}" class="btn btn-secondary">Cancelar</a>
 
         <br>
         <p th:text="${mensagem}"></p>

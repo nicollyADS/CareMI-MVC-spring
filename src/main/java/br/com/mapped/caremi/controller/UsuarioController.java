@@ -1,5 +1,6 @@
 package br.com.mapped.caremi.controller;
 
+import br.com.mapped.caremi.model.SexoBiologico;
 import br.com.mapped.caremi.model.Usuario;
 import br.com.mapped.caremi.repository.UsuarioRepository;
 import jakarta.transaction.Transactional;
@@ -65,6 +66,8 @@ public class UsuarioController {
     @GetMapping("editar/{id}")
     public String editar(@PathVariable("id") Long id, Model model) {
         model.addAttribute("usuario", usuarioRepository.findById(id));
+        model.addAttribute("sexos", SexoBiologico.values());
+
         return "usuario/editar";
     }
 
@@ -76,6 +79,7 @@ public class UsuarioController {
         }
         usuarioRepository.save(usuario);
         redirectAttributes.addFlashAttribute("mensagem", "o usuario foi atualizado!");
+        model.addAttribute("sexos", SexoBiologico.values());
         return "redirect:/usuario/listar";
     }
 

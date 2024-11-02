@@ -1,107 +1,106 @@
-    <!DOCTYPE html>
-    <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-          layout:decorate="~{layout}">
-    <head>
-        <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
-        <meta charset="UTF-8">
-        <title>Editar Resultado do Exame</title>
-    </head>
-    <body>
-    <div layout:fragment="conteudo">
-        <h1>Editar Resultado do Exame</h1>
-        <form th:action="@{/resultado-exame/editar}" th:object="${resultadoExame}" method="post">
-            <div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
-                <p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>
-            </div>
-            <input th:field="*{id}" type="hidden"/>
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+    <meta charset="UTF-8">
+    <title>Editar Resultado do Exame</title>
+</head>
+<body>
+<div layout:fragment="conteudo">
+    <h1>Editar Resultado do Exame</h1>
+    <form th:action="@{/resultado-exame/editar}" th:object="${resultadoExame}" method="post">
+        <div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
+            <p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>
+        </div>
+        <input th:field="*{id}" type="hidden"/>
 
-            <div class="mb-3">
-                <label class="form-label">Descrição do Exame</label>
-                <input class="form-control" th:field="*{descricaoExame}" type="text" id="descricaoExame" placeholder="Informe a descrição do exame" required>
-                <p th:if="${#fields.hasErrors('descricaoExame')}" class="text text-danger" th:errors="*{descricaoExame}"></p>
-            </div>
+        <div class="mb-3">
+            <label class="form-label">Descrição do Exame</label>
+            <input class="form-control" th:field="*{descricaoExame}" type="text" id="descricaoExame" placeholder="Informe a descrição do exame" required>
+            <p th:if="${#fields.hasErrors('descricaoExame')}" class="text text-danger" th:errors="*{descricaoExame}"></p>
+        </div>
 
-            <div class="mb-3">
-                <label class="form-label">Observações</label>
-                <input class="form-control" th:field="*{observacao}" type="text" id="observacao" placeholder="Informe observações" required>
-                <p th:if="${#fields.hasErrors('observacao')}" class="text text-danger" th:errors="*{observacao}"></p>
-            </div>
+        <div class="mb-3">
+            <label class="form-label">Observações</label>
+            <input class="form-control" th:field="*{observacao}" type="text" id="observacao" placeholder="Informe observações" required>
+            <p th:if="${#fields.hasErrors('observacao')}" class="text text-danger" th:errors="*{observacao}"></p>
+        </div>
 
-            <div class="mb-3">
-                <label class="form-label">Resultado</label>
-                <input class="form-control" th:field="*{resultado}" type="number" id="resultado" placeholder="Informe o resultado" required>
-                <p th:if="${#fields.hasErrors('resultado')}" class="text text-danger" th:errors="*{resultado}"></p>
-            </div>
+        <div class="mb-3">
+            <label class="form-label">Resultado</label>
+            <input class="form-control" th:field="*{resultado}" type="number" id="resultado" placeholder="Informe o resultado" required>
+            <p th:if="${#fields.hasErrors('resultado')}" class="text text-danger" th:errors="*{resultado}"></p>
+        </div>
 
-            <div class="mb-3">
-                <label class="form-label">Glóbulos Vermelhos</label>
-                <input class="form-control" th:field="*{globulosVermelhos}" type="number" id="globulosVermelhos" placeholder="Informe o número de glóbulos vermelhos" required>
-                <p th:if="${#fields.hasErrors('globulosVermelhos')}" class="text text-danger" th:errors="*{globulosVermelhos}"></p>
-            </div>
+        <div class="mb-3">
+            <label class="form-label">Glóbulos Vermelhos</label>
+            <input class="form-control" th:field="*{globulosVermelhos}" type="number" id="globulosVermelhos" placeholder="Informe o número de glóbulos vermelhos" required>
+            <p th:if="${#fields.hasErrors('globulosVermelhos')}" class="text text-danger" th:errors="*{globulosVermelhos}"></p>
+        </div>
 
-            <div class="mb-3">
-                <label class="form-label">Glóbulos Brancos</label>
-                <input class="form-control" th:field="*{globulosBrancos}" type="number" id="globulosBrancos" placeholder="Informe o número de glóbulos brancos" required>
-                <p th:if="${#fields.hasErrors('globulosBrancos')}" class="text text-danger" th:errors="*{globulosBrancos}"></p>
-            </div>
+        <div class="mb-3">
+            <label class="form-label">Glóbulos Brancos</label>
+            <input class="form-control" th:field="*{globulosBrancos}" type="number" id="globulosBrancos" placeholder="Informe o número de glóbulos brancos" required>
+            <p th:if="${#fields.hasErrors('globulosBrancos')}" class="text text-danger" th:errors="*{globulosBrancos}"></p>
+        </div>
 
-            <div class="mb-3">
-                <label class="form-label">Plaquetas</label>
-                <input class="form-control" th:field="*{plaquetas}" type="number" id="plaquetas" placeholder="Informe o número de plaquetas" required>
-                <p th:if="${#fields.hasErrors('plaquetas')}" class="text text-danger" th:errors="*{plaquetas}"></p>
-            </div>
+        <div class="mb-3">
+            <label class="form-label">Plaquetas</label>
+            <input class="form-control" th:field="*{plaquetas}" type="number" id="plaquetas" placeholder="Informe o número de plaquetas" required>
+            <p th:if="${#fields.hasErrors('plaquetas')}" class="text text-danger" th:errors="*{plaquetas}"></p>
+        </div>
 
-            <div class="mb-3">
-                <label class="form-label">Hemoglobina Glicada</label>
-                <input class="form-control" th:field="*{homoglobinaGlicada}" type="number" id="homoglobinaGlicada" placeholder="Informe o nível de hemoglobina glicada" required>
-                <p th:if="${#fields.hasErrors('homoglobinaGlicada')}" class="text text-danger" th:errors="*{homoglobinaGlicada}"></p>
-            </div>
+        <div class="mb-3">
+            <label class="form-label">Hemoglobina Glicada</label>
+            <input class="form-control" th:field="*{homoglobinaGlicada}" type="number" id="homoglobinaGlicada" placeholder="Informe o nível de hemoglobina glicada" required>
+            <p th:if="${#fields.hasErrors('homoglobinaGlicada')}" class="text text-danger" th:errors="*{homoglobinaGlicada}"></p>
+        </div>
 
-            <div class="mb-3">
-                <label class="form-label">Creatina</label>
-                <input class="form-control" th:field="*{creatina}" type="number" id="creatina" placeholder="Informe o nível de creatina" required>
-                <p th:if="${#fields.hasErrors('creatina')}" class="text text-danger" th:errors="*{creatina}"></p>
-            </div>
+        <div class="mb-3">
+            <label class="form-label">Creatina</label>
+            <input class="form-control" th:field="*{creatina}" type="number" id="creatina" placeholder="Informe o nível de creatina" required>
+            <p th:if="${#fields.hasErrors('creatina')}" class="text text-danger" th:errors="*{creatina}"></p>
+        </div>
 
-            <div class="mb-3">
-                <label class="form-label">Colesterol Total</label>
-                <input class="form-control" th:field="*{colesterolTotal}" type="number" id="colesterolTotal" placeholder="Informe o colesterol total" required>
-                <p th:if="${#fields.hasErrors('colesterolTotal')}" class="text text-danger" th:errors="*{colesterolTotal}"></p>
-            </div>
+        <div class="mb-3">
+            <label class="form-label">Colesterol Total</label>
+            <input class="form-control" th:field="*{colesterolTotal}" type="number" id="colesterolTotal" placeholder="Informe o colesterol total" required>
+            <p th:if="${#fields.hasErrors('colesterolTotal')}" class="text text-danger" th:errors="*{colesterolTotal}"></p>
+        </div>
 
-            <div class="mb-3">
-                <label class="form-label">Colesterol HDL</label>
-                <input class="form-control" th:field="*{colesterolHDL}" type="number" id="colesterolHDL" placeholder="Informe o colesterol HDL" required>
-                <p th:if="${#fields.hasErrors('colesterolHDL')}" class="text text-danger" th:errors="*{colesterolHDL}"></p>
-            </div>
+        <div class="mb-3">
+            <label class="form-label">Colesterol HDL</label>
+            <input class="form-control" th:field="*{colesterolHDL}" type="number" id="colesterolHDL" placeholder="Informe o colesterol HDL" required>
+            <p th:if="${#fields.hasErrors('colesterolHDL')}" class="text text-danger" th:errors="*{colesterolHDL}"></p>
+        </div>
 
-            <div class="mb-3">
-                <label class="form-label">Colesterol LDL</label>
-                <input class="form-control" th:field="*{colesterolLDL}" type="number" id="colesterolLDL" placeholder="Informe o colesterol LDL" required>
-                <p th:if="${#fields.hasErrors('colesterolLDL')}" class="text text-danger" th:errors="*{colesterolLDL}"></p>
-            </div>
+        <div class="mb-3">
+            <label class="form-label">Colesterol LDL</label>
+            <input class="form-control" th:field="*{colesterolLDL}" type="number" id="colesterolLDL" placeholder="Informe o colesterol LDL" required>
+            <p th:if="${#fields.hasErrors('colesterolLDL')}" class="text text-danger" th:errors="*{colesterolLDL}"></p>
+        </div>
 
-            <div class="mb-3">
-                <label class="form-label">Triglicerídeos</label>
-                <input class="form-control" th:field="*{teglicerides}" type="number" id="teglicerides" placeholder="Informe o nível de triglicerídeos" required>
-                <p th:if="${#fields.hasErrors('teglicerides')}" class="text text-danger" th:errors="*{teglicerides}"></p>
-            </div>
+        <div class="mb-3">
+            <label class="form-label">Triglicerídeos</label>
+            <input class="form-control" th:field="*{teglicerides}" type="number" id="teglicerides" placeholder="Informe o nível de triglicerídeos" required>
+            <p th:if="${#fields.hasErrors('teglicerides')}" class="text text-danger" th:errors="*{teglicerides}"></p>
+        </div>
 
-            <div class="mb-3">
-                <label class="form-label">Hormônio Trófico Estimulante (TSH)</label>
-                <input class="form-control" th:field="*{hormonioTrioestimulanteTSH}" type="number" id="hormonioTrioestimulanteTSH" placeholder="Informe o nível de TSH" required>
-                <p th:if="${#fields.hasErrors('hormonioTrioestimulanteTSH')}" class="text text-danger" th:errors="*{hormonioTrioestimulanteTSH}"></p>
-            </div>
+        <div class="mb-3">
+            <label class="form-label">Hormônio Trófico Estimulante (TSH)</label>
+            <input class="form-control" th:field="*{hormonioTrioestimulanteTSH}" type="number" id="hormonioTrioestimulanteTSH" placeholder="Informe o nível de TSH" required>
+            <p th:if="${#fields.hasErrors('hormonioTrioestimulanteTSH')}" class="text text-danger" th:errors="*{hormonioTrioestimulanteTSH}"></p>
+        </div>
 
-            <button class="btn btn-success">Salvar</button>
-            <a href="@{/resultado-exame/listar}" class="btn btn-secondary">Cancelar</a>
+        <button class="btn btn-success">Salvar</button>
 
-            <br>
-            <p th:text="${mensagem}"></p>
-        </form>
-    </div>
+        <br>
+        <p th:text="${mensagem}"></p>
+    </form>
+</div>
 
-    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
-    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
-    </body>
-    </html>
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>

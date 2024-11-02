@@ -17,42 +17,41 @@
 
         <div class="mb-3">
             <label class="form-label">Descrição</label>
-            <input class="form-control" th:field="*{descricao}" type="text" id="descricao" placeholder="Informe a descrição">
+            <input class="form-control" th:field="*{descricao}" type="text" id="descricao" placeholder="Informe a descrição" required>
             <p th:if="${#fields.hasErrors('descricao')}" class="text text-danger" th:errors="*{descricao}"></p>
         </div>
 
         <div class="mb-3">
             <label class="form-label">Quantidade de Dias</label>
-            <input class="form-control" th:field="*{dias}" type="number" id="dias" placeholder="Informe a quantidade de dias">
+            <input class="form-control" th:field="*{dias}" type="number" id="dias" placeholder="Informe a quantidade de dias" required>
             <p th:if="${#fields.hasErrors('dias')}" class="text text-danger" th:errors="*{dias}"></p>
         </div>
 
         <div class="mb-3">
             <label class="form-label">Hábito</label>
-            <input class="form-control" th:field="*{habito}" type="text" id="habito" placeholder="Informe o hábito">
+            <input class="form-control" th:field="*{habito}" type="text" id="habito" placeholder="Informe o hábito" required>
             <p th:if="${#fields.hasErrors('habito')}" class="text text-danger" th:errors="*{habito}"></p>
         </div>
 
         <div class="mb-3">
             <label class="form-label">Tempo de Sono</label>
-            <input class="form-control" th:field="*{tempoSono}" type="text" id="tempoSono" placeholder="Informe o tempo de sono">
+            <input class="form-control" th:field="*{tempoSono}" type="text" id="tempoSono" placeholder="Informe o tempo de sono" required>
             <p th:if="${#fields.hasErrors('tempoSono')}" class="text text-danger" th:errors="*{tempoSono}"></p>
         </div>
 
         <div class="mb-3">
             <label class="form-label">Hereditário</label>
-            <input class="form-control" th:field="*{hereditario}" type="text" id="hereditario" placeholder="Informe questões hereditárias">
+            <input class="form-control" th:field="*{hereditario}" type="text" id="hereditario" placeholder="Informe questões hereditárias" required>
             <p th:if="${#fields.hasErrors('hereditario')}" class="text text-danger" th:errors="*{hereditario}"></p>
         </div>
 
         <div class="mb-3">
             <label class="form-label">Data de Envio</label>
-            <input class="form-control" th:field="*{dataEnvio}" type="date" id="dataEnvio">
+            <input class="form-control" th:field="*{dataEnvio}" type="date" id="dataEnvio" required>
             <p th:if="${#fields.hasErrors('dataEnvio')}" class="text text-danger" th:errors="*{dataEnvio}"></p>
         </div>
 
         <button class="btn btn-success">Salvar</button>
-        <a href="@{/atendimento/listar}" class="btn btn-secondary">Cancelar</a>
 
         <br>
         <p th:text="${mensagem}"></p>
