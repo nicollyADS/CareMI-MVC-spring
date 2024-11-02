@@ -17,23 +17,26 @@
         <p th:text="${mensagem}">Paciente cadastrado com sucesso!</p>
     </div>
 
-
     <form th:action="@{/paciente/cadastrar}" th:object="${paciente}" method="post">
         <div class="mb-3">
             <label for="nome" class="form-label">Nome do Paciente</label>
             <input type="text" class="form-control" id="nome" th:field="*{nome}" placeholder="Informe o nome do paciente" required>
+            <div class="invalid-feedback" th:if="${#fields.hasErrors('nome')}" th:each="err : ${#fields.errors('nome')}" th:text="${err}"></div>
         </div>
         <div class="mb-3">
             <label for="dataNascimento" class="form-label">Data de Nascimento</label>
             <input type="date" class="form-control" id="dataNascimento" th:field="*{dataNascimento}" required>
+            <div class="invalid-feedback" th:if="${#fields.hasErrors('dataNascimento')}" th:each="err : ${#fields.errors('dataNascimento')}" th:text="${err}"></div>
         </div>
         <div class="mb-3">
             <label for="cpf" class="form-label">CPF</label>
             <input type="text" class="form-control" id="cpf" th:field="*{cpf}" placeholder="Informe o CPF" required>
+            <div class="invalid-feedback" th:if="${#fields.hasErrors('cpf')}" th:each="err : ${#fields.errors('cpf')}" th:text="${err}"></div>
         </div>
         <div class="mb-3">
             <label for="rg" class="form-label">RG</label>
             <input type="text" class="form-control" id="rg" th:field="*{rg}" placeholder="Informe o RG" required>
+            <div class="invalid-feedback" th:if="${#fields.hasErrors('rg')}" th:each="err : ${#fields.errors('rg')}" th:text="${err}"></div>
         </div>
         <div class="mb-3">
             <label for="estadoCivil" class="form-label">Estado Civil</label>
@@ -44,18 +47,22 @@
                 <option value="DIVORCIADO">Divorciado</option>
                 <option value="VIUVO">Viúvo</option>
             </select>
+            <div class="invalid-feedback" th:if="${#fields.hasErrors('estadoCivil')}" th:each="err : ${#fields.errors('estadoCivil')}" th:text="${err}"></div>
         </div>
         <div class="mb-3">
             <label for="peso" class="form-label">Peso (kg)</label>
             <input type="number" class="form-control" id="peso" th:field="*{peso}" placeholder="Informe o peso" required>
+            <div class="invalid-feedback" th:if="${#fields.hasErrors('peso')}" th:each="err : ${#fields.errors('peso')}" th:text="${err}"></div>
         </div>
         <div class="mb-3">
             <label for="altura" class="form-label">Altura (cm)</label>
             <input type="number" class="form-control" id="altura" th:field="*{altura}" placeholder="Informe a altura" required>
+            <div class="invalid-feedback" th:if="${#fields.hasErrors('altura')}" th:each="err : ${#fields.errors('altura')}" th:text="${err}"></div>
         </div>
         <div class="mb-3">
             <label for="grupoSanguineo" class="form-label">Grupo Sanguíneo</label>
             <input type="text" class="form-control" id="grupoSanguineo" th:field="*{grupoSanguineo}" placeholder="Informe o grupo sanguíneo" required>
+            <div class="invalid-feedback" th:if="${#fields.hasErrors('grupoSanguineo')}" th:each="err : ${#fields.errors('grupoSanguineo')}" th:text="${err}"></div>
         </div>
         <div class="mb-3">
             <label for="sexoBiologico" class="form-label">Sexo Biológico</label>
@@ -65,6 +72,7 @@
                 <option value="FEMININO">Feminino</option>
                 <option value="INTERSEXUAL">Intersexual</option>
             </select>
+            <div class="invalid-feedback" th:if="${#fields.hasErrors('sexoBiologico')}" th:each="err : ${#fields.errors('sexoBiologico')}" th:text="${err}"></div>
         </div>
         <button type="submit" class="btn btn-primary">Cadastrar</button>
     </form>

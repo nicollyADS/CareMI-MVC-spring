@@ -10,34 +10,37 @@
 <body>
 
 <div layout:fragment="conteudo">
-
     <h1>Cadastro de Médico</h1>
 
     <div th:if="${mensagem}" class="alert alert-success" role="alert">
         <p th:text="${mensagem}">Médico cadastrado com sucesso!</p>
     </div>
 
-
     <form th:action="@{/medico/cadastrar}" th:object="${medico}" method="post">
         <div class="mb-3">
             <label for="nome" class="form-label">Nome do Médico</label>
             <input type="text" class="form-control" id="nome" th:field="*{nome}" placeholder="Informe o nome do médico" required>
+            <div th:if="${#fields.hasErrors('nome')}" class="text-danger" th:errors="*{nome}">Erro de validação</div>
         </div>
         <div class="mb-3">
             <label for="especializacao" class="form-label">Especialização</label>
             <input type="text" class="form-control" id="especializacao" th:field="*{especializacao}" placeholder="Informe a especialização" required>
+            <div th:if="${#fields.hasErrors('especializacao')}" class="text-danger" th:errors="*{especializacao}">Erro de validação</div>
         </div>
         <div class="mb-3">
             <label for="crm" class="form-label">CRM</label>
             <input type="text" class="form-control" id="crm" th:field="*{crm}" placeholder="Informe o CRM" required>
+            <div th:if="${#fields.hasErrors('crm')}" class="text-danger" th:errors="*{crm}">Erro de validação</div>
         </div>
         <div class="mb-3">
             <label for="email" class="form-label">E-mail</label>
             <input type="email" class="form-control" id="email" th:field="*{email}" placeholder="Informe o e-mail" required>
+            <div th:if="${#fields.hasErrors('email')}" class="text-danger" th:errors="*{email}">Erro de validação</div>
         </div>
         <div class="mb-3">
             <label for="celular" class="form-label">Celular</label>
             <input type="text" class="form-control" id="celular" th:field="*{celular}" placeholder="Informe o celular" required>
+            <div th:if="${#fields.hasErrors('celular')}" class="text-danger" th:errors="*{celular}">Erro de validação</div>
         </div>
         <button type="submit" class="btn btn-primary">Cadastrar</button>
     </form>

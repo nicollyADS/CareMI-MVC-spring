@@ -21,26 +21,32 @@
         <div class="mb-3">
             <label for="descricao" class="form-label">Descrição</label>
             <textarea class="form-control" id="descricao" th:field="*{descricao}" rows="3" placeholder="Informe a descrição do atendimento"></textarea>
+            <div th:if="${#fields.hasErrors('descricao')}" class="text-danger" th:errors="*{descricao}"></div>
         </div>
         <div class="mb-3">
             <label for="dias" class="form-label">Quantidade de Dias</label>
             <input type="number" class="form-control" id="dias" th:field="*{dias}" placeholder="Informe a quantidade de dias">
+            <div th:if="${#fields.hasErrors('dias')}" class="text-danger" th:errors="*{dias}"></div>
         </div>
         <div class="mb-3">
             <label for="habito" class="form-label">Hábito</label>
             <input type="text" class="form-control" id="habito" th:field="*{habito}" placeholder="Informe o hábito">
+            <div th:if="${#fields.hasErrors('habito')}" class="text-danger" th:errors="*{habito}"></div>
         </div>
         <div class="mb-3">
             <label for="tempoSono" class="form-label">Tempo de Sono</label>
             <input type="text" class="form-control" id="tempoSono" th:field="*{tempoSono}" placeholder="Informe o tempo de sono">
+            <div th:if="${#fields.hasErrors('tempoSono')}" class="text-danger" th:errors="*{tempoSono}"></div>
         </div>
         <div class="mb-3">
             <label for="hereditario" class="form-label">Histórico Hereditário</label>
             <input type="text" class="form-control" id="hereditario" th:field="*{hereditario}" placeholder="Informe o histórico hereditário">
+            <div th:if="${#fields.hasErrors('hereditario')}" class="text-danger" th:errors="*{hereditario}"></div>
         </div>
         <div class="mb-3">
             <label for="dataEnvio" class="form-label">Data de Envio</label>
             <input type="date" class="form-control" id="dataEnvio" th:field="*{dataEnvio}" placeholder="Informe a data de envio">
+            <div th:if="${#fields.hasErrors('dataEnvio')}" class="text-danger" th:errors="*{dataEnvio}"></div>
         </div>
         <div class="mb-3">
             <label for="paciente" class="form-label">Paciente</label>
@@ -48,6 +54,7 @@
                 <option value="" disabled selected>Selecione um paciente</option>
                 <option th:each="paciente : ${pacientes}" th:value="${paciente.id}" th:text="${paciente.nome}"></option>
             </select>
+            <div th:if="${#fields.hasErrors('paciente.id')}" class="text-danger" th:errors="*{paciente.id}"></div>
         </div>
         <div class="mb-3">
             <label for="medico" class="form-label">Médico</label>
@@ -55,6 +62,7 @@
                 <option value="" disabled selected>Selecione um médico</option>
                 <option th:each="medico : ${medicos}" th:value="${medico.id}" th:text="${medico.nome}"></option>
             </select>
+            <div th:if="${#fields.hasErrors('medico.id')}" class="text-danger" th:errors="*{medico.id}"></div>
         </div>
         <button type="submit" class="btn btn-primary">Cadastrar</button>
     </form>
