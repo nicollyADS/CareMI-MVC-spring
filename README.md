@@ -1,4 +1,4 @@
-# Aplicação: CareMI
+# Aplicação: CareMI MVC
 
 ### Link do Repositório: https://github.com/nicollyADS/CareMI-MVC-spring
 
