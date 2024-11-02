@@ -29,16 +29,16 @@
 Assista ao vídeo de apresentação do projeto [aqui]().
 
 
-#### Listagem de Endpoints
-## Home
+## Listagem de Endpoints
+### Home
 - **GET** `/home`  
   Renderiza a página inicial.
 
-## Login
+### Login
 - **GET** `/login`  
   Renderiza a página de login.
 
-## Atendimento
+### Atendimento
 - **GET** `/atendimento/cadastrar`  
   Exibe o formulário para cadastrar um atendimento.
 - **POST** `/atendimento/cadastrar`  
@@ -54,7 +54,7 @@ Assista ao vídeo de apresentação do projeto [aqui]().
 - **POST** `/atendimento/remover`  
   Remove um atendimento com o ID fornecido.
 
-## Exame
+### Exame
 - **GET** `/exame/cadastrar`  
   Exibe o formulário para cadastrar um exame.
 - **POST** `/exame/cadastrar`  
@@ -70,7 +70,7 @@ Assista ao vídeo de apresentação do projeto [aqui]().
 - **POST** `/exame/remover`  
   Remove um exame com o ID fornecido.
 
-## Médico
+### Médico
 - **GET** `/medico/cadastrar`  
   Exibe o formulário para cadastrar um médico.
 - **POST** `/medico/cadastrar`  
@@ -88,7 +88,7 @@ Assista ao vídeo de apresentação do projeto [aqui]().
 - **POST** `/medico/remover`  
   Remove um médico com o ID fornecido.
 
-## Paciente
+### Paciente
 - **GET** `/paciente/cadastrar`  
   Exibe o formulário para cadastrar um paciente.
 - **POST** `/paciente/cadastrar`  
