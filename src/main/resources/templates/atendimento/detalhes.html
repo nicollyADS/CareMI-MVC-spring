@@ -3,12 +3,13 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta charset="UTF-8">
-    <title th:text="'Detalhes de Atendimento: ' + ${atendimento.descricao}">Detalhes de Atendimento</title>
+    <title th:text="'Detalhes de Atendimento: ' + ${atendimento.id}">Detalhes de Atendimento</title>
     <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
 </head>
 <body>
 <div layout:fragment="conteudo" class="container mt-4">
-    <h1 th:text="'Atendimento: ' + ${atendimento.descricao}">Descrição do Atendimento</h1>
+    <h1>Descrição do Atendimento</h1>
+    <p><strong>ID do Atendimento:</strong> <span th:text="${atendimento.id}"></span></p>
     <p><strong>Descrição:</strong> <span th:text="${atendimento.descricao}"></span></p>
     <p><strong>Dias:</strong> <span th:text="${atendimento.dias}"></span></p>
     <p><strong>Hábito:</strong> <span th:text="${atendimento.habito}"></span></p>

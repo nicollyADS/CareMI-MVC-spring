@@ -3,12 +3,13 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta charset="UTF-8">
-    <title th:text="'Detalhes do Médico: ' + ${medico.nome}">Detalhes do Médico</title>
+    <title th:text="'Detalhes do Médico: ' + ${medico.id}">Detalhes do Médico</title>
     <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
 </head>
 <body>
 <div layout:fragment="conteudo" class="container mt-4">
-    <h1 th:text="'Médico: ' + ${medico.nome}">Nome do Médico</h1>
+    <h1>Detalhes do Médico</h1>
+    <p><strong>ID do Médico:</strong> <span th:text="${medico.id}"></span></p>
     <p><strong>Nome:</strong> <span th:text="${medico.nome}"></span></p>
     <p><strong>Especialização:</strong> <span th:text="${medico.especializacao}"></span></p>
     <p><strong>CRM:</strong> <span th:text="${medico.crm}"></span></p>

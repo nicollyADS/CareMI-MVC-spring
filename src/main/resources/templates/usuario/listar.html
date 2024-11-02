@@ -22,7 +22,7 @@
             <th>Estado Civil</th>
             <th>Profissão</th>
             <th>Data de Cadastro</th>
-            <th>Ativo</th>
+            <th>Status</th>
             <th>Ações</th>
         </tr>
         <tr th:each="usuario : ${usuarios}">
@@ -34,7 +34,7 @@
             <td th:text="${usuario.estadoCivil}"></td>
             <td th:text="${usuario.profissao}"></td>
             <td th:text="${#temporals.format(usuario.dataCadastro, 'dd/MM/yyyy')}"></td>
-            <td th:text="${usuario.ativo == 1 ? 'Sim' : 'Não'}"></td>
+            <td th:text="${usuario.ativo == 1 ? 'Ativo' : 'Inativo'}"></td>
             <td>
                 <a th:href="@{/usuario/detalhes/}+${usuario.id}" class="btn btn-outline-success m-2">Ver Detalhes</a>
                 <a th:href="@{/usuario/editar/}+${usuario.id}" class="btn btn-outline-primary m-2">Editar</a>

@@ -3,12 +3,13 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta charset="UTF-8">
-    <title th:text="'Detalhes do Exame: ' + ${exame.descricao}">Detalhes do Exame</title>
+    <title th:text="'Detalhes do Exame: ' + ${exame.id}">Detalhes do Exame</title>
     <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
 </head>
 <body>
 <div layout:fragment="conteudo" class="container mt-4">
-    <h1 th:text="'Exame: ' + ${exame.descricao}">Descrição do Exame</h1>
+    <h1>Descrição do Exame</h1>
+    <p><strong>ID do Exame:</strong> <span th:text="${exame.id}"></span></p>
     <p><strong>Descrição:</strong> <span th:text="${exame.descricao}"></span></p>
     <p><strong>Data do Exame:</strong> <span th:text="${#temporals.format(exame.data, 'dd/MM/yyyy')}"></span></p>
     <p><strong>Atendimento:</strong> <span th:text="${exame.atendimento.descricao}"></span></p>
