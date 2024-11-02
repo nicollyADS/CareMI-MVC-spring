@@ -10,11 +10,16 @@
 <div layout:fragment="conteudo" class="container mt-4">
     <h1 th:text="'Resultado do Exame ID: ' + ${resultadoExame.id}">Resultado do Exame</h1>
 
+    <p><strong>ID do exame:</strong> <span th:text="${resultadoExame.exame.id}"></span></p>
+    <p><strong>Descrição do Exame:</strong> <span th:text="${resultadoExame.exame.descricao}"></span></p>
+    <p><strong>Data do Exame:</strong> <span th:text="${resultadoExame.exame.data}"></span></p>
+    <br>
     <p><strong>ID do Resultado:</strong> <span th:text="${resultadoExame.id}"></span></p>
-    <p><strong>Descrição do Exame:</strong> <span th:text="${resultadoExame.descricaoExame}"></span></p>
+    <p><strong>Descrição do Resultado:</strong> <span th:text="${resultadoExame.descricaoExame}"></span></p>
     <p><strong>Observações:</strong> <span th:text="${resultadoExame.observacao}"></span></p>
     <p><strong>Resultado:</strong> <span th:text="${resultadoExame.resultado}"></span></p>
 
+    <br>
     <h3>Valores dos Exames</h3>
     <ul>
         <li><strong>Glóbulos Vermelhos:</strong> <span th:text="${resultadoExame.globulosVermelhos}"></span></li>

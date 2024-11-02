@@ -28,25 +28,22 @@ public class ResultadoExameController {
     private ExameRepository exameRepository;
 
     @GetMapping("cadastrar")
-    public String cadastrar(ResultadoExame resultadoExame, Model model){
-
+    public String cadastrar(Model model) {
         model.addAttribute("resultadoExame", new ResultadoExame());
         model.addAttribute("exames", exameRepository.findAll());
         return "resultado-exame/cadastrar";
     }
 
-
     @PostMapping("cadastrar")
     @Transactional
-    public String cadastrar(@Valid ResultadoExame resultadoExame, BindingResult result, RedirectAttributes redirectAttributes, Model model){
+    public String cadastrar(@Valid ResultadoExame resultadoExame, BindingResult result, RedirectAttributes redirectAttributes) {
         if (result.hasErrors()) {
             return "resultado-exame/cadastrar";
         }
         resultadoExameRepository.save(resultadoExame);
-        redirectAttributes.addFlashAttribute("mensagem", "resultado do exame cadastrado com sucesso!");
-        return "redirect:/resultado-exame/cadastrar";
+        redirectAttributes.addFlashAttribute("mensagem", "Resultado do exame cadastrado com sucesso!");
+        return "redirect:/resultado-exame/listar"; // Redirecionar para listar após sucesso
     }
-
 
     @GetMapping("listar")
     public String listar(Model model) {
@@ -54,52 +51,49 @@ public class ResultadoExameController {
         return "resultado-exame/listar";
     }
 
-
     @GetMapping("detalhes/{id}")
     public String detalhesResultadosExames(@PathVariable Long id, Model model) {
-        Optional<ResultadoExame> optionalResultadoExame = resultadoExameRepository.findById(id);
-        if (optionalResultadoExame.isPresent()) {
-            model.addAttribute("resultadoExame", optionalResultadoExame.get());
-        } else {
-            model.addAttribute("erro", "resultado do exame não encontrado");
-            return "error";
-        }
-        return "resultado-exame/detalhes";
+        return resultadoExameRepository.findById(id)
+                .map(resultadoExame -> {
+                    model.addAttribute("resultadoExame", resultadoExame);
+                    return "resultado-exame/detalhes";
+                })
+                .orElseGet(() -> {
+                    model.addAttribute("erro", "Resultado do exame não encontrado");
+                    return "error"; // Retorna a página de erro se não encontrado
+                });
     }
-
-
 
     @GetMapping("editar/{id}")
     public String editar(@PathVariable("id") Long id, Model model) {
-        Optional<ResultadoExame> optionalResultadoExame = resultadoExameRepository.findById(id);
-        if (optionalResultadoExame.isPresent()) {
-            model.addAttribute("resultadoExame", optionalResultadoExame.get());
-        } else {
-            model.addAttribute("erro", "resultado do exame não encontrado");
-            return "error";
-        }
-        return "resultado-exame/editar";
+        return resultadoExameRepository.findById(id)
+                .map(resultadoExame -> {
+                    model.addAttribute("resultadoExame", resultadoExame);
+                    model.addAttribute("exames", exameRepository.findAll()); // Carregar exames para edição
+                    return "resultado-exame/editar";
+                })
+                .orElseGet(() -> {
+                    model.addAttribute("erro", "Resultado do exame não encontrado");
+                    return "error"; // Retorna a página de erro se não encontrado
+                });
     }
 
     @PostMapping("editar")
     @Transactional
-    public String editar(@Valid ResultadoExame resultadoExame, BindingResult result, RedirectAttributes redirectAttributes, Model model) {
+    public String editar(@Valid ResultadoExame resultadoExame, BindingResult result, RedirectAttributes redirectAttributes) {
         if (result.hasErrors()) {
-            model.addAttribute("resultadoExame", resultadoExame);
-            return "resultado-exame/editar";
+            return "resultado-exame/editar"; // Retorna para a edição em caso de erro
         }
         resultadoExameRepository.save(resultadoExame);
-        redirectAttributes.addFlashAttribute("mensagem", "o resultado do exame foi atualizado!");
-        return "redirect:/resultado-exame/listar";
+        redirectAttributes.addFlashAttribute("mensagem", "O resultado do exame foi atualizado!");
+        return "redirect:/resultado-exame/listar"; // Redirecionar para listar após sucesso
     }
-
 
     @PostMapping("remover")
     @Transactional
     public String remover(Long id, RedirectAttributes redirectAttributes) {
         resultadoExameRepository.deleteById(id);
-        redirectAttributes.addFlashAttribute("mensagem", "o resultado do exame foi removido com sucesso");
-        return "redirect:/resultado-exame/listar";
+        redirectAttributes.addFlashAttribute("mensagem", "O resultado do exame foi removido com sucesso");
+        return "redirect:/resultado-exame/listar"; // Redirecionar para listar após remoção
     }
-
 }

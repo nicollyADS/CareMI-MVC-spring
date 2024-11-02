@@ -17,6 +17,7 @@
         <thead>
         <tr>
             <th>Descrição do Exame</th>
+            <th>Descrição do Resultado</th>
             <th>Resultado</th>
             <th>Observações</th>
             <th>Ações</th>
@@ -24,6 +25,7 @@
         </thead>
         <tbody>
         <tr th:each="resultado : ${resultadosExames}">
+            <td th:text="${resultado.exame.descricao}"></td>
             <td th:text="${resultado.descricaoExame}"></td>
             <td th:text="${resultado.resultado}"></td>
             <td th:text="${resultado.observacao}"></td>

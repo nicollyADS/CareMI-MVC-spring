@@ -16,8 +16,18 @@
         <input th:field="*{id}" type="hidden"/>
 
         <div class="mb-3">
-            <label class="form-label">Descrição do Exame</label>
-            <input class="form-control" th:field="*{descricaoExame}" type="text" id="descricaoExame" placeholder="Informe a descrição do exame" required>
+            <label class="form-label">Descrição Exame</label>
+            <select th:field="*{exame.id}" class="form-select">
+                <option value="">Selecione</option>
+                <option th:each="exame : ${exames}"
+                        th:value="${exame.id}"
+                        th:text="${exame.descricao}"></option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Descrição do Resultado</label>
+            <input class="form-control" th:field="*{descricaoExame}" type="text" id="descricaoExame" placeholder="Informe a descrição do resultado do exame" required>
             <p th:if="${#fields.hasErrors('descricaoExame')}" class="text text-danger" th:errors="*{descricaoExame}"></p>
         </div>
 
