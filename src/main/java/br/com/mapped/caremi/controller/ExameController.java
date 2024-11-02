@@ -1,6 +1,7 @@
 package br.com.mapped.caremi.controller;
 
 import br.com.mapped.caremi.model.Exame;
+import br.com.mapped.caremi.repository.AtendimentoRepository;
 import br.com.mapped.caremi.repository.ExameRepository;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -23,9 +24,14 @@ public class ExameController {
     @Autowired
     private ExameRepository exameRepository;
 
+    @Autowired
+    private AtendimentoRepository atendimentoRepository;
 
     @GetMapping("cadastrar")
     public String cadastrar(Exame exame, Model model){
+        model.addAttribute("exame", new Exame());
+        model.addAttribute("atendimentos", atendimentoRepository.findAll());
+
         return "exame/cadastrar";
     }
 
@@ -34,6 +40,8 @@ public class ExameController {
     @Transactional
     public String cadastrar(@Valid Exame exame, BindingResult result, RedirectAttributes redirectAttributes, Model model){
         if (result.hasErrors()) {
+            model.addAttribute("atendimentos", atendimentoRepository.findAll());
+
             return "exame/cadastrar";
         }
         exameRepository.save(exame);
@@ -53,6 +61,7 @@ public class ExameController {
     public String detalhesExame(@PathVariable Long id, Model model) {
         Optional<Exame> optionalExame = exameRepository.findById(id);
         if (optionalExame.isPresent()) {
+            model.addAttribute("atendimentos", atendimentoRepository.findAll());
             model.addAttribute("exame", optionalExame.get());
         } else {
             model.addAttribute("erro", "exame não encontrado");
@@ -64,6 +73,7 @@ public class ExameController {
 
     @GetMapping("editar/{id}")
     public String editar(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("atendimentos", atendimentoRepository.findAll());
         model.addAttribute("exame", exameRepository.findById(id));
         return "exame/editar";
     }
@@ -72,6 +82,7 @@ public class ExameController {
     @PostMapping("editar")
     public String editar(@Valid Exame exame, BindingResult result, RedirectAttributes redirectAttributes, Model model){
         if (result.hasErrors()) {
+            model.addAttribute("atendimentos", atendimentoRepository.findAll());
             return "exame/editar";
         }
         exameRepository.save(exame);

@@ -60,5 +60,9 @@ public class ResultadoExame {
     private Integer hormonioTrioestimulanteTSH;
 
 
+    //RELACIONAMENTOS
+    @OneToOne
+    @JoinColumn(name = "cdExame", referencedColumnName = "cdExame", nullable = false)
+    private Exame exame;
 
 }

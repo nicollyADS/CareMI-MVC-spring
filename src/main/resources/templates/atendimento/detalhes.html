@@ -15,6 +15,9 @@
     <p><strong>Tempo de Sono:</strong> <span th:text="${atendimento.tempoSono}"></span></p>
     <p><strong>Hereditário:</strong> <span th:text="${atendimento.hereditario}"></span></p>
     <p><strong>Data de Envio:</strong> <span th:text="${#temporals.format(atendimento.dataEnvio, 'dd/MM/yyyy')}"></span></p>
+    <p><strong>Médico:</strong> <span th:text="${atendimento.medico.nome}"></span></p>
+    <p><strong>Paciente:</strong> <span th:text="${atendimento.paciente.nome}"></span></p>
+
     <a th:href="@{/atendimento/listar}" class="btn btn-secondary">Voltar para a lista de atendimentos</a>
 </div>
 

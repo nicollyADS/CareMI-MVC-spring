@@ -51,6 +51,27 @@
             <p th:if="${#fields.hasErrors('dataEnvio')}" class="text text-danger" th:errors="*{dataEnvio}"></p>
         </div>
 
+        <div class="mb-3">
+            <label class="form-label">Médico</label>
+            <select th:field="*{medico.id}" class="form-select">
+                <option value="">Selecione</option>
+                <option th:each="medico : ${medicos}"
+                        th:value="${medico.id}"
+                        th:text="${medico.nome}"></option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Paciente</label>
+            <select th:field="*{paciente.id}" class="form-select">
+                <option value="">Selecione</option>
+                <option th:each="paciente : ${pacientes}"
+                        th:value="${paciente.id}"
+                        th:text="${paciente.nome}"></option>
+            </select>
+        </div>
+
+
         <button class="btn btn-success">Salvar</button>
 
         <br>

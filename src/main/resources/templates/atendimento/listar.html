@@ -22,7 +22,8 @@
             <th>Tempo de Sono</th>
             <th>Hereditário</th>
             <th>Data de Envio</th>
-            <th>Ações</th>
+            <th>Médico</th>
+            <th>Paciente</th>
         </tr>
         </thead>
         <tbody>
@@ -33,6 +34,9 @@
             <td th:text="${atendimento.tempoSono}"></td>
             <td th:text="${atendimento.hereditario}"></td>
             <td th:text="${#temporals.format(atendimento.dataEnvio, 'dd/MM/yyyy')}"></td>
+            <td th:text="${atendimento.medico.nome}"></td>
+            <td th:text="${atendimento.paciente.nome}"></td>
+            <td>
             <td>
                 <a th:href="@{/atendimento/detalhes/}+${atendimento.id}" class="btn btn-outline-success m-2">Ver Detalhes</a>
                 <a th:href="@{/atendimento/editar/}+${atendimento.id}" class="btn btn-outline-primary m-2">Editar</a>

@@ -19,6 +19,15 @@
 
 
     <form th:action="@{/resultado-exame/cadastrar}" th:object="${resultadoExame}" method="post">
+
+        <div class="mb-3">
+            <label for="exame" class="form-label">Exame</label>
+            <select class="form-control" id="exame" th:field="*{exame.id}">
+                <option value="" disabled selected>Selecione um exame</option>
+                <option th:each="exame : ${exames}" th:value="${exame.id}" th:text="${exame.descricao}"></option>
+            </select>
+        </div>
+
         <div class="mb-3">
             <label for="descricaoExame" class="form-label">Descrição do Exame</label>
             <input type="text" class="form-control" id="descricaoExame" th:field="*{descricaoExame}" placeholder="Informe a descrição do exame" required>

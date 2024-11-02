@@ -27,6 +27,13 @@
             <label for="data" class="form-label">Data do Exame</label>
             <input type="date" class="form-control" id="data" th:field="*{data}" placeholder="Informe a data do exame">
         </div>
+        <div class="mb-3">
+            <label for="atendimento" class="form-label">Atendimento</label>
+            <select class="form-control" id="atendimento" th:field="*{atendimento.id}">
+                <option value="" disabled selected>Selecione um atendimento</option>
+                <option th:each="atendimento : ${atendimentos}" th:value="${atendimento.id}" th:text="${atendimento.descricao}"></option>
+            </select>
+        </div>
         <button type="submit" class="btn btn-primary">Cadastrar</button>
     </form>
 </div>

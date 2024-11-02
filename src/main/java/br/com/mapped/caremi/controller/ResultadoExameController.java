@@ -1,6 +1,7 @@
 package br.com.mapped.caremi.controller;
 
 import br.com.mapped.caremi.model.ResultadoExame;
+import br.com.mapped.caremi.repository.ExameRepository;
 import br.com.mapped.caremi.repository.ResultadoExameRepository;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -23,9 +24,14 @@ public class ResultadoExameController {
     @Autowired
     private ResultadoExameRepository resultadoExameRepository;
 
+    @Autowired
+    private ExameRepository exameRepository;
 
     @GetMapping("cadastrar")
     public String cadastrar(ResultadoExame resultadoExame, Model model){
+
+        model.addAttribute("resultadoExame", new ResultadoExame());
+        model.addAttribute("exames", exameRepository.findAll());
         return "resultado-exame/cadastrar";
     }
 

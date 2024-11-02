@@ -6,6 +6,7 @@ import lombok.Setter;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Getter
 @Setter
@@ -44,5 +45,19 @@ public class Atendimento {
     private Integer ativo;
 
 
+    //RELACIONAMENTOS
+    // Relacionamento com Paciente
+    @ManyToOne
+    @JoinColumn(name = "cdPaciente", nullable = false)
+    private Paciente paciente;
+
+    // Relacionamento com Medico
+    @ManyToOne
+    @JoinColumn(name = "cdMedico", nullable = false)
+    private Medico medico;
+
+    //Relacionamento com Exame
+    @OneToMany(mappedBy = "atendimento", cascade = CascadeType.ALL)
+    private List<Exame> exames;
 
 }

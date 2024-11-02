@@ -29,5 +29,11 @@ public class Exame {
     private String descricao;
 
 
+    //RELACIONAMENTOS
+    @ManyToOne
+    @JoinColumn(name = "cdAtendimento", nullable = false)
+    private Atendimento atendimento;
 
+    @OneToOne(mappedBy = "exame", cascade = CascadeType.ALL)
+    private ResultadoExame resultadoExame;
 }

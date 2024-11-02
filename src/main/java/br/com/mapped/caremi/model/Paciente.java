@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -36,6 +38,9 @@ public class Paciente {
     @Enumerated(EnumType.STRING)
     private SexoBiologico sexoBiologico;
 
+    //RELACIONAMENTOS
+    @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL)
+    private List<Atendimento> atendimentos;
 
 
 }

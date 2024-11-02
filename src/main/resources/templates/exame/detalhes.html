@@ -11,7 +11,10 @@
     <h1 th:text="'Exame: ' + ${exame.descricao}">Descrição do Exame</h1>
     <p><strong>Descrição:</strong> <span th:text="${exame.descricao}"></span></p>
     <p><strong>Data do Exame:</strong> <span th:text="${#temporals.format(exame.data, 'dd/MM/yyyy')}"></span></p>
+    <p><strong>Atendimento:</strong> <span th:text="${exame.atendimento.descricao}"></span></p>
+
     <a th:href="@{/exame/listar}" class="btn btn-secondary">Voltar para a lista de exames</a>
+
 </div>
 
 <script th:src="@{/webjars/jquery/jquery.min.js}"></script>

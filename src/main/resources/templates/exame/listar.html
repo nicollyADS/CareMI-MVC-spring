@@ -18,13 +18,14 @@
         <tr>
             <th>Data do Exame</th>
             <th>Descrição</th>
-            <th>Ações</th>
+            <th>Atendimento</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="exame : ${exames}">
             <td th:text="${#temporals.format(exame.data, 'dd/MM/yyyy')}"></td>
             <td th:text="${exame.descricao}"></td>
+            <td th:text="${exame.atendimento.descricao}"></td>
             <td>
                 <a th:href="@{/exame/detalhes/}+${exame.id}" class="btn btn-outline-success m-2">Ver Detalhes</a>
                 <a th:href="@{/exame/editar/}+${exame.id}" class="btn btn-outline-primary m-2">Editar</a>

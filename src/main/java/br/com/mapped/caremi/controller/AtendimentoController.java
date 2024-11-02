@@ -2,6 +2,8 @@ package br.com.mapped.caremi.controller;
 
 import br.com.mapped.caremi.model.Atendimento;
 import br.com.mapped.caremi.repository.AtendimentoRepository;
+import br.com.mapped.caremi.repository.MedicoRepository;
+import br.com.mapped.caremi.repository.PacienteRepository;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +24,17 @@ public class AtendimentoController {
     @Autowired
     private AtendimentoRepository atendimentoRepository;
 
+    @Autowired
+    private PacienteRepository pacienteRepository;
+
+    @Autowired
+    private MedicoRepository medicoRepository;
+
 
     @GetMapping("cadastrar")
     public String cadastrar(Atendimento atendimento, Model model){
+        model.addAttribute("pacientes", pacienteRepository.findAll());
+        model.addAttribute("medicos", medicoRepository.findAll());
         return "atendimento/cadastrar";
     }
 
@@ -33,6 +43,8 @@ public class AtendimentoController {
     @Transactional
     public String cadastrar(@Valid Atendimento atendimento, BindingResult result, RedirectAttributes redirectAttributes, Model model){
         if (result.hasErrors()) {
+            model.addAttribute("pacientes", pacienteRepository.findAll());
+            model.addAttribute("medicos", medicoRepository.findAll());
             return "atendimento/cadastrar";
         }
         atendimentoRepository.save(atendimento);
@@ -52,6 +64,8 @@ public class AtendimentoController {
     public String detalhesAtendimento(@PathVariable Long id, Model model) {
         Optional<Atendimento> optionalAtendimento = atendimentoRepository.findById(id);
         if (optionalAtendimento.isPresent()) {
+            model.addAttribute("pacientes", pacienteRepository.findAll());
+            model.addAttribute("medicos", medicoRepository.findAll());
             model.addAttribute("atendimento", optionalAtendimento.get());
         } else {
             model.addAttribute("erro", "atendimento não encontrado");
@@ -62,6 +76,8 @@ public class AtendimentoController {
 
     @GetMapping("editar/{id}")
     public String editar(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("pacientes", pacienteRepository.findAll());
+        model.addAttribute("medicos", medicoRepository.findAll());
         model.addAttribute("atendimento", atendimentoRepository.findById(id));
         return "atendimento/editar";
     }
@@ -70,6 +86,8 @@ public class AtendimentoController {
     @PostMapping("editar")
     public String editar(@Valid Atendimento atendimento, BindingResult result, RedirectAttributes redirectAttributes, Model model){
         if (result.hasErrors()) {
+            model.addAttribute("pacientes", pacienteRepository.findAll());
+            model.addAttribute("medicos", medicoRepository.findAll());
             return "atendimento/editar";
         }
         atendimentoRepository.save(atendimento);
