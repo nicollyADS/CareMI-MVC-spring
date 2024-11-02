@@ -24,6 +24,28 @@
             <input type="text" class="form-control" id="nome" th:field="*{nome}" placeholder="Informe o nome do paciente" required>
         </div>
         <div class="mb-3">
+            <label for="dataNascimento" class="form-label">Data de Nascimento</label>
+            <input type="date" class="form-control" id="dataNascimento" th:field="*{dataNascimento}" required>
+        </div>
+        <div class="mb-3">
+            <label for="cpf" class="form-label">CPF</label>
+            <input type="text" class="form-control" id="cpf" th:field="*{cpf}" placeholder="Informe o CPF" required>
+        </div>
+        <div class="mb-3">
+            <label for="rg" class="form-label">RG</label>
+            <input type="text" class="form-control" id="rg" th:field="*{rg}" placeholder="Informe o RG" required>
+        </div>
+        <div class="mb-3">
+            <label for="estadoCivil" class="form-label">Estado Civil</label>
+            <select class="form-select" id="estadoCivil" th:field="*{estadoCivil}" required>
+                <option value="" disabled selected>Selecione o estado civil</option>
+                <option value="SOLTEIRO">Solteiro</option>
+                <option value="CASADO">Casado</option>
+                <option value="DIVORCIADO">Divorciado</option>
+                <option value="VIUVO">Viúvo</option>
+            </select>
+        </div>
+        <div class="mb-3">
             <label for="peso" class="form-label">Peso (kg)</label>
             <input type="number" class="form-control" id="peso" th:field="*{peso}" placeholder="Informe o peso" required>
         </div>
@@ -41,7 +63,7 @@
                 <option value="" disabled selected>Selecione o sexo biológico</option>
                 <option value="MASCULINO">Masculino</option>
                 <option value="FEMININO">Feminino</option>
-                <option value="INTERSEXUAL">Outro</option>
+                <option value="INTERSEXUAL">Intersexual</option>
             </select>
         </div>
         <button type="submit" class="btn btn-primary">Cadastrar</button>

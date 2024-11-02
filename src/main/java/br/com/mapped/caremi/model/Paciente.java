@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Getter
@@ -24,6 +25,19 @@ public class Paciente {
 
     @Column(name = "nmPaciente", length = 100, nullable = false)
     private String nome;
+
+    @Column(name = "dtNascimento", nullable = false)
+    private LocalDate dataNascimento;
+
+    @Column(name = "nrCpf", length = 15, nullable = false)
+    private String cpf;
+
+    @Column(name = "nrRg", length = 15, nullable = false)
+    private String rg;
+
+    @Column(name = "dsEstadoCivil", length = 100)
+    @Enumerated(EnumType.STRING)
+    private EstadoCivil estadoCivil;
 
     @Column(name = "nrPeso", length = 6, nullable = false)
     private Integer peso;

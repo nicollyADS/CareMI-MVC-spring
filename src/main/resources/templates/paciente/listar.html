@@ -17,6 +17,10 @@
         <thead>
         <tr>
             <th>Nome</th>
+            <th>Data de Nascimento</th>
+            <th>CPF</th>
+            <th>RG</th>
+            <th>Estado Civil</th>
             <th>Peso (kg)</th>
             <th>Altura (cm)</th>
             <th>Grupo Sanguíneo</th>
@@ -27,6 +31,10 @@
         <tbody>
         <tr th:each="paciente : ${pacientes}">
             <td th:text="${paciente.nome}"></td>
+            <td th:text="${#temporals.format(paciente.dataNascimento, 'dd/MM/yyyy')}"></td>
+            <td th:text="${paciente.cpf}"></td>
+            <td th:text="${paciente.rg}"></td>
+            <td th:text="${paciente.estadoCivil}"></td>
             <td th:text="${paciente.peso}"></td>
             <td th:text="${paciente.altura}"></td>
             <td th:text="${paciente.grupoSanguineo}"></td>

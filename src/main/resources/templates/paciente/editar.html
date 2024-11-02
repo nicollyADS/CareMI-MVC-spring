@@ -22,6 +22,30 @@
         </div>
 
         <div class="mb-3">
+            <label class="form-label">Data de Nascimento</label>
+            <input class="form-control" th:field="*{dataNascimento}" type="date" id="dataNascimento">
+            <p th:if="${#fields.hasErrors('dataNascimento')}" class="text text-danger" th:errors="*{dataNascimento}"></p>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">CPF</label>
+            <input class="form-control" th:field="*{cpf}" type="text" id="cpf" placeholder="Informe o CPF">
+            <p th:if="${#fields.hasErrors('cpf')}" class="text text-danger" th:errors="*{cpf}"></p>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">RG</label>
+            <input class="form-control" th:field="*{rg}" type="text" id="rg" placeholder="Informe o RG">
+            <p th:if="${#fields.hasErrors('rg')}" class="text text-danger" th:errors="*{rg}"></p>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Estado Civil</label>
+            <input class="form-control" th:field="*{estadoCivil}" type="text" id="estadoCivil" placeholder="Informe o estado civil">
+            <p th:if="${#fields.hasErrors('estadoCivil')}" class="text text-danger" th:errors="*{estadoCivil}"></p>
+        </div>
+
+        <div class="mb-3">
             <label class="form-label">Peso (kg)</label>
             <input class="form-control" th:field="*{peso}" type="number" id="peso" placeholder="Informe o peso do paciente" required>
             <p th:if="${#fields.hasErrors('peso')}" class="text text-danger" th:errors="*{peso}"></p>

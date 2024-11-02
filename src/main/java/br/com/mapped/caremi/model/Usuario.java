@@ -7,6 +7,7 @@ import lombok.Setter;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDate;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -22,37 +23,14 @@ public class Usuario {
     @Column(name = "cdUsuario", length = 9)
     private Long id;
 
-    @Column(name = "nmUsuario", length = 20, nullable = false)
-    private String nome;
-
-    @Column(name = "dtNascimento", nullable = false)
-    private LocalDate dataNascimento;
-
-    @Column(name = "nrCpf", length = 15, nullable = false)
-    private String cpf;
-
-    @Column(name = "nrRg", length = 15, nullable = false)
-    private String rg;
-
-    @Column(name = "dsNacionalidade", length = 50, nullable = false)
-    private String nacionalidade;
-
-    @Column(name = "dtCadastro", nullable = false)
-    private LocalDate dataCadastro;
-
-    @Column(name = "dsEstadoCivil", length = 100)
-    @Enumerated(EnumType.STRING)
-    private EstadoCivil estadoCivil;
-
-    @Column(name = "dsProfissao", length = 100)
-    private String profissao;
+    @Column(name = "nmUsuario", length = 20, nullable = false, unique = true)
+    private String username;
 
     @Column(name = "dsSenha", length = 100, nullable = false)
-    private String senha;
+    private String password;
 
-    @Column(name = "fgAtivo", length = 1, nullable = false)
-    private Integer ativo;
-
-
-
+    public Usuario(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
 }

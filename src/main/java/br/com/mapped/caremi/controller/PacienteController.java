@@ -2,6 +2,7 @@ package br.com.mapped.caremi.controller;
 
 import br.com.mapped.caremi.model.EstadoCivil;
 import br.com.mapped.caremi.model.Paciente;
+import br.com.mapped.caremi.model.SexoBiologico;
 import br.com.mapped.caremi.repository.PacienteRepository;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -67,6 +68,7 @@ public class PacienteController {
     public String editar(@PathVariable("id") Long id, Model model) {
         model.addAttribute("paciente", pacienteRepository.findById(id));
         model.addAttribute("estadosCivis", EstadoCivil.values());
+        model.addAttribute("sexos", SexoBiologico.values());
 
         return "paciente/editar";
     }
@@ -80,6 +82,8 @@ public class PacienteController {
         pacienteRepository.save(paciente);
         redirectAttributes.addFlashAttribute("mensagem", "o paciente foi atualizado!");
         model.addAttribute("estadosCivis", EstadoCivil.values());
+        model.addAttribute("sexos", SexoBiologico.values());
+
         return "redirect:/paciente/listar";
     }
 

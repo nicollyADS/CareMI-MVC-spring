@@ -12,7 +12,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand"  th:href="@{/}">CareMI
+        <a class="navbar-brand"  th:href="@{/home}">CareMI
             <i class="bi bi-film"></i>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -21,8 +21,25 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" th:href="@{/home}">Início</a>
+                    <a class="nav-link active" aria-current="page" th:href="@{/atendimento/listar}">Atendimentos</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" th:href="@{/exame/listar}">Exames</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" th:href="@{/medico/listar}">Médicos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" th:href="@{/paciente/listar}">Pacientes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" th:href="@{/resultado-exame/listar}">Resultados dos Exames</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" th:href="@{/usuario/cadastrar}">Cadastrar Usuário</a>
+                </li>
+                <li class="nav-item">
+
             </ul>
 
             <form class="d-flex" th:action="@{/medico/pesquisar}" method="get">
