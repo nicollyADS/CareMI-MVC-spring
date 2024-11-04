@@ -82,11 +82,11 @@ public class ResultadoExameController {
     @Transactional
     public String editar(@Valid ResultadoExame resultadoExame, BindingResult result, RedirectAttributes redirectAttributes) {
         if (result.hasErrors()) {
-            return "resultado-exame/editar"; // Retorna para a edição em caso de erro
+            return "resultado-exame/editar";
         }
         resultadoExameRepository.save(resultadoExame);
         redirectAttributes.addFlashAttribute("mensagem", "O resultado do exame foi atualizado!");
-        return "redirect:/resultado-exame/listar"; // Redirecionar para listar após sucesso
+        return "redirect:/resultado-exame/listar";
     }
 
     @PostMapping("remover")
@@ -94,6 +94,6 @@ public class ResultadoExameController {
     public String remover(Long id, RedirectAttributes redirectAttributes) {
         resultadoExameRepository.deleteById(id);
         redirectAttributes.addFlashAttribute("mensagem", "O resultado do exame foi removido com sucesso");
-        return "redirect:/resultado-exame/listar"; // Redirecionar para listar após remoção
+        return "redirect:/resultado-exame/listar";
     }
 }

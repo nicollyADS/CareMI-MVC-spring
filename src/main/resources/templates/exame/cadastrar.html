@@ -17,11 +17,6 @@
         <p th:text="${mensagem}">Exame cadastrado com sucesso!</p>
     </div>
 
-    <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger" role="alert">
-        <ul>
-            <li th:each="error : ${#fields.errors('*')}" th:text="${error}"></li>
-        </ul>
-    </div>
 
     <form th:action="@{/exame/cadastrar}" th:object="${exame}" method="post">
         <div class="mb-3">
