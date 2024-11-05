@@ -26,7 +26,7 @@
 
 ### Vídeo de Apresentação
 
-Assista ao vídeo de apresentação do projeto [aqui]().
+Assista ao vídeo de apresentação do projeto [aqui](https://youtu.be/1VPKH7uQiT0?si=I6v_h_Am3JPPhUhr).
 
 
 ## Listagem de Endpoints
